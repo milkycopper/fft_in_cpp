@@ -1,8 +1,21 @@
 add_rules("mode.debug", "mode.release")
+add_requires("gtest")
+
+target("complex")
+    set_kind("static")
+    add_includedirs("include/complex", {public = true})
+    add_files("src/complex/*.cpp")
 
 target("fft")
     set_kind("binary")
     add_files("src/*.cpp")
+
+target("test_complex")
+    set_kind("binary")
+    set_group("tests")
+    add_files("test/test_complex64.cpp")
+    add_deps("complex")
+    add_packages("gtest")
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
