@@ -33,5 +33,10 @@ namespace ComplexSpace
 
         Float norm() const;
         Float arg() const;
+
+        static Complex from_norm_angle(Float norm, Float angle);
+        static Complex from_angle(Float angle);
+        static Complex primitive(unsigned long n);
+        static Complex primitive_pow(unsigned long n, unsigned long k);
     };
 };

@@ -97,13 +97,21 @@ TEST(Float, Sqrt)
 
 TEST(Float, Atan)
 {
-    auto pi_frac_4 = 3.14149 / 4.0;
+    auto pi_frac_4 = Float::pi() / 4.0;
     ASSERT_TRUE(Float(1.0).atan().abs_diff_eq(pi_frac_4, 1e-4));
-    ASSERT_FALSE(Float(1.0).atan().abs_diff_eq(pi_frac_4));
     ASSERT_TRUE(Float(-1.0).atan().abs_diff_eq(-pi_frac_4, 1e-4));
 
-    auto pi_frac_6 = 3.14149 / 6.0;
+    auto pi_frac_6 = Float::pi() / 6.0;
     ASSERT_TRUE((Float(1.0) / Float(3.0).sqrt()).atan().abs_diff_eq(pi_frac_6, 1e-4));
-    ASSERT_FALSE((Float(1.0) / Float(3.0).sqrt()).atan().abs_diff_eq(pi_frac_6));
     ASSERT_TRUE((Float(-1.0) / Float(3.0).sqrt()).atan().abs_diff_eq(-pi_frac_6, 1e-4));
+}
+
+TEST(Float, SinCos)
+{
+    auto pi_frac_6 = Float::pi() / 6.0;
+    ASSERT_TRUE(Float(pi_frac_6).sin().abs_diff_eq(0.5, 1e-6));
+    ASSERT_TRUE(Float(pi_frac_6 * 2.0).cos().abs_diff_eq(0.5, 1e-6));
+    ASSERT_TRUE(Float(-pi_frac_6).sin().abs_diff_eq(-0.5, 1e-6));
+    ASSERT_TRUE(Float(-pi_frac_6 * 2.0).cos().abs_diff_eq(0.5, 1e-6));
+    ASSERT_TRUE(Float(-pi_frac_6 * 4.0).cos().abs_diff_eq(-0.5, 1e-6));
 }

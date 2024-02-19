@@ -93,4 +93,24 @@ namespace ComplexSpace
         return (imag / real).atan();
     }
 
+    Complex Complex::from_norm_angle(Float norm, Float angle)
+    {
+        return Complex(norm * angle.cos(), norm * angle.sin());
+    }
+
+    Complex Complex::from_angle(Float angle)
+    {
+        return Complex(angle.cos(), angle.sin());
+    }
+
+    Complex Complex::primitive(unsigned long n)
+    {
+        return Complex::from_angle(-(Float::pi() * 2.0 / static_cast<FloatSpace::InnerFloat>(n)));
+    }
+
+    Complex Complex::primitive_pow(unsigned long n, unsigned long k)
+    {
+        unsigned long reminder = k % n;
+        return Complex::from_angle(-(Float::pi() * 2.0 * static_cast<FloatSpace::InnerFloat>(k)) / static_cast<FloatSpace::InnerFloat>(n));
+    }
 }

@@ -53,8 +53,11 @@ namespace FloatSpace
 
         Float sqrt() const;
         Float atan() const;
+        Float sin() const;
+        Float cos() const;
 
         static Float epsilon();
+        static Float pi() { return Float(3.14159265358979323846264338327950288); }
 
     private:
         InnerFloat inner;

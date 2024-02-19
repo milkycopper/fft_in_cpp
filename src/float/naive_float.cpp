@@ -123,4 +123,14 @@ namespace FloatSpace
     {
         return Float(std::atan(inner));
     }
+
+    Float Float::sin() const
+    {
+        return Float(std::sin(inner));
+    }
+
+    Float Float::cos() const
+    {
+        return Float(std::cos(inner));
+    }
 }
