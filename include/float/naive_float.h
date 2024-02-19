@@ -3,16 +3,12 @@
 #ifdef FLOAT_32
 #ifndef FLOAT_64
 typedef float InnerFloat;
-typedef unsigned int UInt;
-#define BITS_WIDTH 32
 #endif
 #endif
 
 #ifdef FLOAT_64
 #ifndef FLOAT_32
 typedef double InnerFloat;
-typedef unsigned long UInt;
-#define BITS_WIDTH 64
 #endif
 #endif
 
@@ -36,9 +32,20 @@ public:
     void operator*=(const Float &rhs);
     void operator/=(const Float &rhs);
 
+    bool operator>(const Float &rhs) const;
+    bool operator>=(const Float &rhs) const;
+    bool operator<(const Float &rhs) const;
+    bool operator<=(const Float &rhs) const;
+
     Float abs() const;
+    bool abs_diff_eq(const Float &rhs, const Float &epsilon) const;
+    bool abs_diff_eq(const Float &rhs) const;
+
+    Float epsilon() const;
+
+    Float max(const Float &rhs) const;
+    Float min(const Float &rhs) const;
 
 private:
     InnerFloat inner;
-    UInt to_bits() const;
 };

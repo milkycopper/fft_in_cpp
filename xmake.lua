@@ -1,28 +1,3 @@
-add_rules("mode.debug", "mode.release")
-add_requires("gtest")
-
-target("float")
-    set_kind("static")
-    add_includedirs("include/float", {public = true})
-    add_defines("FLOAT_64")
-    add_files("src/float/*.cpp")
-
-target("complex")
-    set_kind("static")
-    add_includedirs("include/complex", {public = true})
-    add_files("src/complex/*.cpp")
-
-target("fft")
-    set_kind("binary")
-    add_files("src/*.cpp")
-
-target("test_complex")
-    set_kind("binary")
-    set_group("tests")
-    add_files("test/test_complex64.cpp")
-    add_deps("complex")
-    add_packages("gtest")
-
 --
 -- If you want to known more usage about xmake, please see https://xmake.io
 --
@@ -92,3 +67,35 @@ target("test_complex")
 -- @endcode
 --
 
+add_rules("mode.debug", "mode.release")
+add_requires("gtest")
+
+target("float")
+    set_kind("static")
+    add_includedirs("include/float", {public = true})
+    add_defines("FLOAT_64")
+    add_files("src/float/*.cpp")
+
+target("complex")
+    set_kind("static")
+    add_includedirs("include/complex", {public = true})
+    add_files("src/complex/*.cpp")
+
+target("fft")
+    set_kind("binary")
+    add_files("src/*.cpp")
+
+target("test_float")
+    set_kind("binary")
+    set_group("tests")
+    add_defines("FLOAT_64")
+    add_files("test/test_float.cpp")
+    add_deps("float")
+    add_packages("gtest")
+
+target("test_complex")
+    set_kind("binary")
+    set_group("tests")
+    add_files("test/test_complex64.cpp")
+    add_deps("complex")
+    add_packages("gtest")
