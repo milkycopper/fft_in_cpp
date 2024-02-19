@@ -1,6 +1,12 @@
 add_rules("mode.debug", "mode.release")
 add_requires("gtest")
 
+target("float")
+    set_kind("static")
+    add_includedirs("include/float", {public = true})
+    add_defines("FLOAT_64")
+    add_files("src/float/*.cpp")
+
 target("complex")
     set_kind("static")
     add_includedirs("include/complex", {public = true})
