@@ -1,100 +1,126 @@
 #include <cassert>
 #include <limits>
+#include <cmath>
 
 #include "naive_float.h"
 
-Float Float::operator+(const Float &rhs) const
+namespace FloatSpace
 {
-    return Float(inner + rhs.inner);
-}
+    Float Float::operator+(const Float &rhs) const
+    {
+        return Float(inner + rhs.inner);
+    }
 
-Float Float::operator-(const Float &rhs) const
-{
-    return Float(inner - rhs.inner);
-}
+    Float Float::operator-(const Float &rhs) const
+    {
+        return Float(inner - rhs.inner);
+    }
 
-Float Float::operator*(const Float &rhs) const
-{
-    return Float(inner * rhs.inner);
-}
+    Float Float::operator*(const Float &rhs) const
+    {
+        return Float(inner * rhs.inner);
+    }
 
-Float Float::operator/(const Float &rhs) const
-{
-    return Float(inner / rhs.inner);
-}
+    Float Float::operator/(const Float &rhs) const
+    {
+        return Float(inner / rhs.inner);
+    }
 
-Float Float::operator-() const
-{
-    return Float(-inner);
-}
+    Float Float::operator-() const
+    {
+        return Float(-inner);
+    }
 
-void Float::operator+=(const Float &rhs)
-{
-    inner += rhs.inner;
-}
+    void Float::operator+=(const Float &rhs)
+    {
+        inner += rhs.inner;
+    }
 
-void Float::operator-=(const Float &rhs)
-{
-    inner -= rhs.inner;
-}
+    void Float::operator-=(const Float &rhs)
+    {
+        inner -= rhs.inner;
+    }
 
-void Float::operator*=(const Float &rhs)
-{
-    inner *= rhs.inner;
-}
+    void Float::operator*=(const Float &rhs)
+    {
+        inner *= rhs.inner;
+    }
 
-void Float::operator/=(const Float &rhs)
-{
-    inner /= rhs.inner;
-}
+    void Float::operator/=(const Float &rhs)
+    {
+        inner /= rhs.inner;
+    }
 
-bool Float::operator>(const Float &rhs) const
-{
-    return inner > rhs.inner;
-}
+    bool Float::operator>(const Float &rhs) const
+    {
+        return inner > rhs.inner;
+    }
 
-bool Float::operator>=(const Float &rhs) const
-{
-    return inner >= rhs.inner;
-}
+    bool Float::operator>=(const Float &rhs) const
+    {
+        return inner >= rhs.inner;
+    }
 
-bool Float::operator<(const Float &rhs) const
-{
-    return inner < rhs.inner;
-}
+    bool Float::operator<(const Float &rhs) const
+    {
+        return inner < rhs.inner;
+    }
 
-bool Float::operator<=(const Float &rhs) const
-{
-    return inner <= rhs.inner;
-}
+    bool Float::operator<=(const Float &rhs) const
+    {
+        return inner <= rhs.inner;
+    }
 
-Float Float::abs() const
-{
-    return inner < 0.0 ? Float(-inner) : *this;
-}
+    std::istream &operator>>(std::istream &in, Float &x)
+    {
+        in >> x.inner;
+        return in;
+    }
 
-bool Float::abs_diff_eq(const Float &rhs, const Float &epsilon) const
-{
-    assert(epsilon > Float(0.0));
-    return (*this - rhs).abs() < epsilon;
-}
+    std::ostream &operator<<(std::ostream &out, Float &x)
+    {
+        out << x.inner;
+        return out;
+    }
 
-bool Float::abs_diff_eq(const Float &rhs) const
-{
-    return Float::abs_diff_eq(rhs, epsilon());
-}
+    Float Float::abs() const
+    {
+        return inner < 0.0 ? Float(-inner) : *this;
+    }
 
-Float Float::epsilon() const
-{
-    return Float(std::numeric_limits<InnerFloat>::epsilon());
-}
+    bool Float::abs_diff_eq(const Float &rhs, const Float &epsilon) const
+    {
+        assert(epsilon > Float(0.0) && !isnan(epsilon));
+        return !isnan(inner) && !isnan(rhs.inner) && (*this - rhs).abs() < epsilon;
+    }
 
-Float Float::max(const Float &rhs) const
-{
-    return *this > rhs ? *this : rhs;
-}
+    bool Float::abs_diff_eq(const Float &rhs) const
+    {
+        return Float::abs_diff_eq(rhs, epsilon());
+    }
 
-Float Float::min(const Float &rhs) const
-{
-    return *this < rhs ? *this : rhs;
+    Float Float::epsilon()
+    {
+        return Float(std::numeric_limits<InnerFloat>::epsilon());
+    }
+
+    Float Float::max(const Float &rhs) const
+    {
+        return *this > rhs ? *this : rhs;
+    }
+
+    Float Float::min(const Float &rhs) const
+    {
+        return *this < rhs ? *this : rhs;
+    }
+
+    Float Float::sqrt() const
+    {
+        return Float(std::sqrt(inner));
+    }
+
+    Float Float::atan() const
+    {
+        return Float(std::atan(inner));
+    }
 }

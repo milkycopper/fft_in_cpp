@@ -2,6 +2,8 @@
 
 #include "naive_float.h"
 
+using namespace FloatSpace;
+
 int main(int argc, char **argv)
 {
     ::testing::InitGoogleTest(&argc, argv);
@@ -84,4 +86,24 @@ TEST(Float, Compare)
 
     ASSERT_TRUE(Float(0.3).max(Float(0.2)).abs_diff_eq(0.3));
     ASSERT_TRUE(Float(0.3).min(Float(0.2)).abs_diff_eq(0.2));
+}
+
+TEST(Float, Sqrt)
+{
+    ASSERT_TRUE(Float(2.0).sqrt().abs_diff_eq(1.414, 0.01));
+    ASSERT_FALSE(Float(2.0).sqrt().abs_diff_eq(1.414));
+    ASSERT_FALSE(Float(-2.0).sqrt().abs_diff_eq(1.414, 0.01));
+}
+
+TEST(Float, Atan)
+{
+    auto pi_frac_4 = 3.14149 / 4.0;
+    ASSERT_TRUE(Float(1.0).atan().abs_diff_eq(pi_frac_4, 1e-4));
+    ASSERT_FALSE(Float(1.0).atan().abs_diff_eq(pi_frac_4));
+    ASSERT_TRUE(Float(-1.0).atan().abs_diff_eq(-pi_frac_4, 1e-4));
+
+    auto pi_frac_6 = 3.14149 / 6.0;
+    ASSERT_TRUE((Float(1.0) / Float(3.0).sqrt()).atan().abs_diff_eq(pi_frac_6, 1e-4));
+    ASSERT_FALSE((Float(1.0) / Float(3.0).sqrt()).atan().abs_diff_eq(pi_frac_6));
+    ASSERT_TRUE((Float(-1.0) / Float(3.0).sqrt()).atan().abs_diff_eq(-pi_frac_6, 1e-4));
 }
