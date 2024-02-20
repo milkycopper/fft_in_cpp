@@ -18,7 +18,7 @@ namespace FFT
 
         for (auto k = 0; k < n; k++)
         {
-            auto sum = Complex(0.0, 0.0);
+            Complex sum;
             for (auto j = 0; j < n; j++)
             {
                 sum += x[j] * Complex::primitive_pow(n, j * k);
@@ -39,7 +39,7 @@ namespace FFT
 
         for (auto j = 0; j < n; j++)
         {
-            auto sum = Complex(0.0, 0.0);
+            Complex sum;
             for (auto k = 0; k < n; k++)
             {
                 sum += y[k] * Complex::primitive_pow(n, j * k).conjugate();
