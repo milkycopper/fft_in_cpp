@@ -37,4 +37,14 @@ target("fft")
     add_defines("FLOAT_64")
     add_deps("complex")
     add_files("src/fft/*.cpp")
+
+target("test_fft")
+    set_kind("binary")
+    set_group("tests")
+    add_files("test/fft/*.cpp")
+    add_deps("complex")
+    add_deps("fft")
+    add_defines("FLOAT_64")
+    add_packages("gtest")
+
     

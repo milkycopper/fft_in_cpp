@@ -113,4 +113,9 @@ namespace ComplexSpace
         unsigned long reminder = k % n;
         return Complex::from_angle(-(Float::pi() * 2.0 * static_cast<FloatSpace::InnerFloat>(k)) / static_cast<FloatSpace::InnerFloat>(n));
     }
+
+    Complex Complex::conjugate() const
+    {
+        return Complex(real, -imag);
+    }
 }

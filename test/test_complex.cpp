@@ -71,3 +71,9 @@ TEST(Complex, Primitive)
     ASSERT_TRUE(Complex::primitive(4).abs_diff_eq(Complex(0.0, -1.0), 1e-8));
     ASSERT_TRUE(Complex::primitive_pow(4, 5).abs_diff_eq(Complex(0.0, -1.0), 1e-8));
 }
+
+TEST(Complex, Conjugate)
+{
+    ASSERT_TRUE(Complex(3.0, 4.0).conjugate().abs_diff_eq(Complex(3.0, -4.0)));
+    ASSERT_TRUE(Complex(3.0, -4.0).conjugate().abs_diff_eq(Complex(3.0, 4.0)));
+}
