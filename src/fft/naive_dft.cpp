@@ -51,4 +51,9 @@ namespace FFT
 
         return x;
     }
+
+    bool size_is_power_of_2(size_t n)
+    {
+        return n && (!(n & (n - 1)));
+    }
 }

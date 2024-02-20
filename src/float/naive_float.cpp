@@ -71,13 +71,13 @@ namespace FloatSpace
         return inner <= rhs.inner;
     }
 
-    std::istream &operator>>(std::istream &in, Float &x)
+    std::istream &operator>>(std::istream &in, const Float &x)
     {
         in >> x.inner;
         return in;
     }
 
-    std::ostream &operator<<(std::ostream &out, Float &x)
+    std::ostream &operator<<(std::ostream &out, const Float &x)
     {
         out << x.inner;
         return out;
@@ -90,7 +90,7 @@ namespace FloatSpace
 
     bool Float::abs_diff_eq(const Float &rhs, const Float &epsilon) const
     {
-        assert(epsilon > Float(0.0) && !isnan(epsilon));
+        assert(epsilon > Float(0.0) && !isnan(epsilon.inner));
         return !isnan(inner) && !isnan(rhs.inner) && (*this - rhs).abs() < epsilon;
     }
 

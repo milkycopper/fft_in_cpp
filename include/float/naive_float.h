@@ -41,8 +41,8 @@ namespace FloatSpace
         bool operator<(const Float &rhs) const;
         bool operator<=(const Float &rhs) const;
 
-        friend std::istream &operator>>(std::istream &in, Float &x);
-        friend std::ostream &operator<<(std::ostream &out, Float &x);
+        friend std::istream &operator>>(std::istream &in, const Float &x);
+        friend std::ostream &operator<<(std::ostream &out, const Float &x);
 
         Float abs() const;
         bool abs_diff_eq(const Float &rhs, const Float &epsilon) const;
