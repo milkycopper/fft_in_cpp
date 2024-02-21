@@ -25,4 +25,10 @@ TEST(FFT, CooleyTukeyFFT)
     {
         ASSERT_TRUE(output_a[i].abs_diff_eq(input_b[i], 1e3));
     }
+
+    FFT::CircularMethods::InplaceMethods::CooleyTukey::inverse_fft(input_b);
+    for (auto i = 0; i < n; i++)
+    {
+        ASSERT_TRUE(input_a[i].abs_diff_eq(input_b[i], 1e1));
+    }
 }
