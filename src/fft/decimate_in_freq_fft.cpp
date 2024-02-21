@@ -20,7 +20,7 @@ namespace FFT
 
                 vector<Complex> fft(const vector<Complex> &input)
                 {
-                    auto n = input.size();
+                    const auto n = input.size();
                     if (n <= 1)
                     {
                         return vector<Complex>(input);
@@ -59,7 +59,7 @@ namespace FFT
 
                 vector<Complex> inverse_fft_inner(const vector<Complex> &input, const bool is_first_time)
                 {
-                    auto n = input.size();
+                    const auto n = input.size();
                     if (n <= 1)
                     {
                         return vector<Complex>(input);
@@ -70,7 +70,7 @@ namespace FFT
                         assert(size_is_power_of_2(n));
                     }
 
-                    Float n_recip(1.0 / static_cast<FloatSpace::InnerFloat>(n));
+                    const Float n_recip(1.0 / static_cast<FloatSpace::InnerFloat>(n));
                     const vector<Complex> &y = input;
                     vector<Complex> x(n);
 

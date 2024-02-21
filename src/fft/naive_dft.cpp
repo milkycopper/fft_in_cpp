@@ -1,4 +1,5 @@
 #include <vector>
+#include <cassert>
 
 #include "fft.h"
 #include "naive_complex.h"
@@ -12,7 +13,7 @@ namespace FFT
     /// @brief Naive Discrete Fourier Transform with O(n^2) complexity
     vector<Complex> naive_dft(const vector<Complex> &input)
     {
-        auto n = input.size();
+        const auto n = input.size();
         const vector<Complex> &x = input;
         vector<Complex> y(n);
 
@@ -32,7 +33,7 @@ namespace FFT
     /// @brief Naive Discrete Inverse Fourier Transform with O(n^2) complexity
     vector<Complex> naive_inverse_dft(const vector<Complex> &input)
     {
-        auto n = input.size();
+        const auto n = input.size();
         Float n_recip(1.0 / static_cast<FloatSpace::InnerFloat>(n));
         const vector<Complex> &y = input;
         vector<Complex> x(n);
@@ -55,5 +56,17 @@ namespace FFT
     bool size_is_power_of_2(size_t n)
     {
         return n && (!(n & (n - 1)));
+    }
+
+    size_t power_with_base_2(size_t n)
+    {
+        assert(size_is_power_of_2(n));
+        auto power = 0;
+        while (n != 1)
+        {
+            power += 1;
+            n = n / 2;
+        }
+        return power;
     }
 }

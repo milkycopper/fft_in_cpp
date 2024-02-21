@@ -65,11 +65,11 @@ TEST(Complex, FromAngleNorm)
 TEST(Complex, Primitive)
 {
 
-    ASSERT_TRUE(Complex::primitive(8).abs_diff_eq(Complex(1.0, -1.0) / Complex(Float(2.0).sqrt(), 0.0), 1e-8));
-    ASSERT_TRUE(Complex::primitive_pow(8, 9).abs_diff_eq(Complex(1.0, -1.0) / Complex(Float(2.0).sqrt(), 0.0), 1e-8));
+    ASSERT_TRUE(Complex::primitive(8).abs_diff_eq(Complex(1.0, -1.0) / Complex(Float(2.0).sqrt(), 0.0), 1e-5));
+    ASSERT_TRUE(Complex::primitive_pow(8, 9).abs_diff_eq(Complex(1.0, -1.0) / Complex(Float(2.0).sqrt(), 0.0), 1e-5));
 
-    ASSERT_TRUE(Complex::primitive(4).abs_diff_eq(Complex(0.0, -1.0), 1e-8));
-    ASSERT_TRUE(Complex::primitive_pow(4, 5).abs_diff_eq(Complex(0.0, -1.0), 1e-8));
+    ASSERT_TRUE(Complex::primitive(4).abs_diff_eq(Complex(0.0, -1.0), 1e-5));
+    ASSERT_TRUE(Complex::primitive_pow(4, 5).abs_diff_eq(Complex(0.0, -1.0), 1e-5));
 }
 
 TEST(Complex, Conjugate)

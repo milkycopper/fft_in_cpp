@@ -2,6 +2,7 @@
 
 #include "naive_dft.h"
 #include "recursive_out_of_place_decimate_in_freq.h"
+#include "cooley_tukey_fft.h"
 
 int main(int argc, char **argv)
 {

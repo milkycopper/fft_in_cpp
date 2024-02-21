@@ -13,6 +13,7 @@ namespace FFT
     vector<Complex> naive_inverse_dft(const vector<Complex> &input);
 
     bool size_is_power_of_2(size_t n);
+    size_t power_with_base_2(size_t n);
 
     namespace RecursiveMethods
     {
@@ -22,6 +23,18 @@ namespace FFT
             {
                 vector<Complex> fft(const vector<Complex> &input);
                 vector<Complex> inverse_fft(const vector<Complex> &input);
+            }
+        }
+    }
+
+    namespace CircularMethods
+    {
+        namespace InplaceMethods
+        {
+            namespace CooleyTukey
+            {
+                void fft(vector<Complex> &input);
+                void inverse_fft(vector<Complex> &input);
             }
         }
     }
