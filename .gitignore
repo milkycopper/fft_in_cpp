@@ -37,3 +37,6 @@ build/
 
 # MacOS Cache
 .DS_Store
+
+# Vscode settings
+.vscode

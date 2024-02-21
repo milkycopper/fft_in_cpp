@@ -8,13 +8,8 @@ using std::vector;
 
 TEST(FFT, NaiveDFT)
 {
-    vector<Complex> input;
     auto n = 1000;
-
-    for (auto i = 0; i < n; i++)
-    {
-        input.push_back(Complex(random_float(), random_float()));
-    }
+    vector<Complex> input = random_complex_vector(n);
 
     auto output = FFT::naive_dft(input);
 
@@ -32,8 +27,5 @@ TEST(FFT, NaiveDFT)
     //     std::cout << item << std::endl;
     // }
 
-    for (auto i = 0; i < n; i++)
-    {
-        ASSERT_TRUE(input[i].abs_diff_eq(inverse_output[i], Float::epsilon() * 1e4));
-    }
+    ASSERT_TRUE(vector_abs_diff_eq(input, inverse_output, Float::epsilon() * 1e4));
 }

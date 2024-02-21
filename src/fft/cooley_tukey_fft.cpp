@@ -14,6 +14,19 @@ namespace FFT
         {
             namespace CooleyTukey
             {
+                size_t bit_rev(size_t x, size_t lgn)
+                {
+                    size_t value = 0;
+
+                    for (auto i = lgn; i != 0; i--)
+                    {
+                        value |= (1 & x) << (i - 1);
+                        x >>= 1;
+                    }
+
+                    return value;
+                }
+
                 void fft(vector<Complex> &input)
                 {
                     const auto n = input.size();
@@ -42,21 +55,10 @@ namespace FFT
                         }
                     }
 
-                    for (int i = 0, j = 0; i < n - 1; i++)
+                    vector<Complex> z(x);
+                    for (int i = 0; i < n; i++)
                     {
-                        if (i < j && j < n)
-                        {
-                            auto temp = x[i];
-                            x[i] = x[j];
-                            x[j] = temp;
-                        }
-                        auto k = n / 2;
-                        while (k < j && k > 0)
-                        {
-                            j -= k;
-                            k = k / 2;
-                        }
-                        j += k;
+                        x[i] = z[bit_rev(i, m)];
                     }
 
                     return;
@@ -90,21 +92,10 @@ namespace FFT
                         }
                     }
 
-                    for (int i = 0, j = 0; i < n - 1; i++)
+                    vector<Complex> z(x);
+                    for (int i = 0; i < n; i++)
                     {
-                        if (i < j && j < n)
-                        {
-                            auto temp = x[i];
-                            x[i] = x[j];
-                            x[j] = temp;
-                        }
-                        auto k = n / 2;
-                        while (k < j && k > 0)
-                        {
-                            j -= k;
-                            k = k / 2;
-                        }
-                        j += k;
+                        x[i] = z[bit_rev(i, m)];
                     }
 
                     const auto n_recip = 1.0 / static_cast<FloatSpace::InnerFloat>(n);

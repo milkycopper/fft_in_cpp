@@ -33,6 +33,8 @@ namespace FFT
         {
             namespace CooleyTukey
             {
+                size_t bit_rev(size_t x, size_t lgn);
+
                 void fft(vector<Complex> &input);
                 void inverse_fft(vector<Complex> &input);
             }
