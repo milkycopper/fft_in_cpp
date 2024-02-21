@@ -101,8 +101,7 @@ namespace FFT
                     const auto n_recip = 1.0 / static_cast<FloatSpace::InnerFloat>(n);
                     for (auto i = 0; i < n; i++)
                     {
-                        x[i].real *= n_recip;
-                        x[i].imag *= n_recip;
+                        x[i] = x[i].scale(n_recip);
                     }
 
                     return;

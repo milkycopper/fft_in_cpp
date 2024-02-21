@@ -77,3 +77,9 @@ TEST(Complex, Conjugate)
     ASSERT_TRUE(Complex(3.0, 4.0).conjugate().abs_diff_eq(Complex(3.0, -4.0)));
     ASSERT_TRUE(Complex(3.0, -4.0).conjugate().abs_diff_eq(Complex(3.0, 4.0)));
 }
+
+TEST(Complex, Scale)
+{
+    ASSERT_TRUE(Complex(3.0, 4.0).scale(2.0).abs_diff_eq(Complex(6.0, 8.0)));
+    ASSERT_TRUE(Complex(3.0, -4.0).scale(2.0).abs_diff_eq(Complex(6.0, -8.0)));
+}

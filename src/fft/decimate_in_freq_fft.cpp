@@ -96,8 +96,7 @@ namespace FFT
                     {
                         for (auto i = 0; i < n; i++)
                         {
-                            x[i].real *= n_recip;
-                            x[i].imag *= n_recip;
+                            x[i] = x[i].scale(n_recip);
                         }
                     }
 

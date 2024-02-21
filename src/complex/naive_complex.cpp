@@ -118,4 +118,9 @@ namespace ComplexSpace
     {
         return Complex(real, -imag);
     }
+
+    Complex Complex::scale(Float s) const
+    {
+        return Complex(real * s, imag * s);
+    }
 }

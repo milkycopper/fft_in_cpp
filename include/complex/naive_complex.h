@@ -35,6 +35,7 @@ namespace ComplexSpace
         Float norm() const;
         Float arg() const;
         Complex conjugate() const;
+        Complex scale(Float s) const;
 
         static Complex from_norm_angle(Float norm, Float angle);
         static Complex from_angle(Float angle);

@@ -45,9 +45,7 @@ namespace FFT
             {
                 sum += y[k] * Complex::primitive_pow(n, j * k).conjugate();
             }
-            sum.real *= n_recip;
-            sum.imag *= n_recip;
-            x[j] = sum;
+            x[j] = sum.scale(n_recip);
         }
 
         return x;
