@@ -1,6 +1,8 @@
 add_rules("mode.debug")
 add_requires("gtest")
 
+set_languages("c++17")
+
 option("float_width_32")
     set_default(false)
     set_showmenu(true)
